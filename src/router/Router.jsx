@@ -8,6 +8,7 @@ import MyBookings from "../pages/MyBookings/MyBookings";
 import CarDetails from "../pages/CarDetails/CarDetails";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
+import BrowseCars from "../pages/browsecar/BrowseCars";
 
 
 
@@ -18,20 +19,35 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "/",
-         element: <Home /> },
+         element: <Home />
+      },
 
       { path: "/add-car",
-         element: <AddCard /> },
+         element: <AddCard />
+      },
+    
+      { path: "/browse-cars",
+         element: <BrowseCars></BrowseCars>
+      },
       { path: "/my-listings", 
-        element: <MyListings /> },
+        element: <MyListings />
+      },
+
       { path: "/my-bookings",
-         element: <MyBookings /> },
+         element: <MyBookings />
+      },
+
       { path: "/car/:id",
-         element: <CarDetails /> },
+         element: <CarDetails />
+      },
+
       { path: "/login", 
-        element: <Login /> },
+        element: <Login />
+      },
+      
       { path: "/signup",
-         element: <Signup /> },
+         element: <Signup />
+      },
     ],
   },
 ]);
