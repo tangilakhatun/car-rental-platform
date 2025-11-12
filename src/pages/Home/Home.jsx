@@ -88,8 +88,6 @@ export default function Home() {
 
   return (
     <div className="space-y-10">
-      {/* Hero Banner }
-     
 <div className="relative max-w-11/12 mx-auto mt-6 rounded-2xl overflow-hidden shadow-lg">
   <Carousel
     showThumbs={false}
@@ -136,7 +134,6 @@ export default function Home() {
     ))}
   </Carousel>
 </div>
-
      
      
       {/* Featured Cars */}
