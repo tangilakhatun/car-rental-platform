@@ -1,17 +1,73 @@
 import React, { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
-import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import CarCard from "../../components/CarCard";
 import Spinner from "../../components/Spinner";
 import api from "../../api/api";
+import { CheckCircle, Clock, DollarSign, Headphones, Star } from "lucide-react";
 
 
 export default function Home() {
   const [featuredCars, setFeaturedCars] = useState([]);
   const [loading, setLoading] = useState(true);
+
+   const features = [
+    {
+      icon: <CheckCircle className="w-10 h-10 text-blue-500 mb-3" />,
+      title: "Easy Booking",
+      desc: "Book your car in just a few clicks without any hassle.",
+    },
+    {
+      icon: <DollarSign className="w-10 h-10 text-green-500 mb-3" />,
+      title: "Affordable Rates",
+      desc: "We provide competitive pricing for all car types.",
+    },
+    {
+      icon: <Clock className="w-10 h-10 text-orange-500 mb-3" />,
+      title: "Trusted Providers",
+      desc: "All our cars are listed by verified providers.",
+    },
+    {
+      icon: <Headphones className="w-10 h-10 text-purple-500 mb-3" />,
+      title: "24/7 Support",
+      desc: "We are available to help you at any time of the day.",
+    },
+  ];
+
+   const testimonials = [
+    {
+      name: "John Doe",
+      quote: "Amazing service, very easy to book cars!",
+      img: "https://randomuser.me/api/portraits/men/32.jpg",
+    },
+    {
+      name: "Jane Smith",
+      quote: "Affordable and reliable. Highly recommend!",
+      img: "https://randomuser.me/api/portraits/women/45.jpg",
+    },
+    {
+      name: "Michael Johnson",
+      quote: "Best car rental experience I've ever had.",
+      img: "https://randomuser.me/api/portraits/men/56.jpg",
+    },
+    {
+      name: "Emily Davis",
+      quote: "Customer support was super friendly and helpful!",
+      img: "https://randomuser.me/api/portraits/women/22.jpg",
+    },
+    {
+      name: "Robert Wilson",
+      quote: "Smooth booking process and great cars!",
+      img: "https://randomuser.me/api/portraits/men/74.jpg",
+    },
+    {
+      name: "Sophia Brown",
+      quote: "Loved the clean and well-maintained vehicles!",
+      img: "https://randomuser.me/api/portraits/women/64.jpg",
+    },
+  ];
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -32,7 +88,7 @@ export default function Home() {
 
   return (
     <div className="space-y-10">
-      {/* Hero Banner / Slider */}
+      {/* Hero Banner }
      
 <div className="relative max-w-11/12 mx-auto mt-6 rounded-2xl overflow-hidden shadow-lg">
   <Carousel
@@ -94,29 +150,39 @@ export default function Home() {
       </section>
 
       {/* Why Rent With Us */}
-      <section className="bg-gray-100 py-10">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-6">Why Rent With Us?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <h3 className="font-semibold mb-2">Easy Booking</h3>
-              <p>Book your car in just a few clicks without any hassle.</p>
+      <section className="bg-gradient-to-b from-gray-100 to-gray-200 py-16">
+      <div className="container mx-auto px-6 text-center">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-10 text-gray-800"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Why Rent With Us?
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((item, index) => (
+            <motion.div
+              key={index}
+              className="p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
+              whileHover={{ scale: 1.07 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="flex flex-col items-center">
+                {item.icon}
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
             </motion.div>
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <h3 className="font-semibold mb-2">Affordable Rates</h3>
-              <p>We provide competitive pricing for all car types.</p>
-            </motion.div>
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <h3 className="font-semibold mb-2">Trusted Providers</h3>
-              <p>All our cars are listed by verified providers.</p>
-            </motion.div>
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <h3 className="font-semibold mb-2">24/7 Support</h3>
-              <p>We are available to help you at any time of the day.</p>
-            </motion.div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Extra Sections */}
       <section className="container mx-auto px-4 py-10">
@@ -129,25 +195,52 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-10">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-6">Customer Testimonials</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <p>"Amazing service, very easy to book cars!"</p>
-              <p className="mt-2 font-semibold">- John Doe</p>
+       <section className="bg-gradient-to-b from-gray-50 to-gray-200 py-16">
+      <div className="container mx-auto px-6 text-center">
+      
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-10 text-gray-800"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          What Our Customers Say
+        </motion.h2>
+
+       
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((t, index) => (
+            <motion.div
+              key={index}
+              className="relative bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+             
+              <div className="flex justify-center">
+                <img
+                  src={t.img}
+                  alt={t.name}
+                  className="w-20 h-20 rounded-full object-cover border-4 border-blue-500 shadow-md -mt-12 mb-4"
+                />
+              </div>
+
+            
+              <p className="text-gray-700 italic mb-4 mt-2">“{t.quote}”</p>
+              <p className="font-semibold text-gray-800">{t.name}</p>
+
+              <div className="flex justify-center mt-3 text-yellow-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400" />
+                ))}
+              </div>
             </motion.div>
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <p>"Affordable and reliable. Highly recommend!"</p>
-              <p className="mt-2 font-semibold">- Jane Smith</p>
-            </motion.div>
-            <motion.div className="p-6 bg-white rounded shadow" whileHover={{ scale: 1.05 }}>
-              <p>"Best car rental experience I've ever had."</p>
-              <p className="mt-2 font-semibold">- Mike Johnson</p>
-            </motion.div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
     </div>
   );
 }
