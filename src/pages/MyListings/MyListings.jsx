@@ -13,8 +13,7 @@ export default function MyListings() {
 
   const fetchMyCars = async () => {
     try {
-      const res = await api.get("/cars"); // Public route
-      // Safe check: only filter if user exists
+      const res = await api.get("/cars"); 
       if (user?.email) {
         setCars(res.data.filter(car => car.ownerEmail === user.email));
       } else {
@@ -75,7 +74,7 @@ export default function MyListings() {
 
   useEffect(() => {
     if (!user) {
-      // Show toast if user is not logged in
+      
       Swal.fire({
         toast: true,
         position: "top-end",
