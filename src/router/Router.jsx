@@ -9,6 +9,7 @@ import CarDetails from "../pages/CarDetails/CarDetails";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 import BrowseCars from "../pages/browsecar/BrowseCars";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -23,22 +24,38 @@ const router = createBrowserRouter([
       },
 
       { path: "/add-car",
-         element: <AddCard />
+         element: (
+            <PrivateRoute>
+               <AddCard />
+            </PrivateRoute>
+         ),
       },
     
       { path: "/browse-cars",
          element: <BrowseCars></BrowseCars>
       },
       { path: "/my-listings", 
-        element: <MyListings />
+        element: (
+         <PrivateRoute>
+            <MyListings />
+         </PrivateRoute>
+        ),
       },
 
       { path: "/my-bookings",
-         element: <MyBookings />
+         element: (
+            <PrivateRoute>
+               <MyBookings />
+            </PrivateRoute>
+         ),
       },
 
       { path: "/cars/:id",
-         element: <CarDetails />
+         element: (
+            <PrivateRoute>
+               <CarDetails />
+            </PrivateRoute>
+         )
       },
 
       { path: "/login", 
