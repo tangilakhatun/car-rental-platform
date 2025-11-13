@@ -65,7 +65,7 @@ const Navbar = () => {
             <>
               <NavLink
                 to="/login"
-                className="bg-orange-600 text-white font-bold px-5 py-2 rounded-lg hover:bg-orange-700 transition"
+                className="bg-orange-600 text-white font-bold px-5 py-2 rounded-lg hover:bg-orange-500 transition"
               >
                 Login
               </NavLink>
@@ -186,14 +186,14 @@ const Navbar = () => {
                   <NavLink
                     to="/login"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full bg-orange-600 text-white font-semibold text-center py-2 rounded-lg"
+                    className="block w-full bg-orange-600  hover:bg-orange-500 text-white font-semibold text-center py-2 rounded-lg"
                   >
                     Login
                   </NavLink>
                   <NavLink
                     to="/signup"
                     onClick={() => setMenuOpen(false)}
-                    className="block w-full border-2 border-orange-600 text-orange-600 font-semibold text-center py-2 rounded-lg"
+                    className="block w-full border-2 border-orange-600  hover:bg-orange-500 text-orange-600 font-semibold text-center py-2 rounded-lg"
                   >
                     Register
                   </NavLink>

@@ -1,16 +1,87 @@
-# React + Vite
+# RentWheels – Car Rental Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Site]('')  
 
-Currently, two official plugins are available:
+RentWheels is a full-stack MERN car rental platform that connects users with local car owners and rental providers. Users can browse available cars, view details, and book rentals for specific dates, while providers can list their vehicles, manage bookings, and update availability.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Main Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Browse Cars:** View all available cars listed by users with car details including name, category, price, provider info, and availability.
+- **User Authentication:** Secure login and registration with Email/Password and Google authentication.
+- **Add & Manage Cars:** Providers can add new cars, update details, and delete listings from their personal dashboard.
+- **Booking System:** Users can book cars, see booking history, and prevent double bookings with real-time availability updates.
+- **Dynamic UI & Responsive Design:** Fully responsive layout, modern fonts, uniform car cards, animated sections, and toast notifications for success/error messages.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pages & Functionality
+
+### Navbar & Footer
+- Navbar links: Home, Add Car, My Listings, My Bookings, Browse Cars, Login/Signup.
+- Conditional rendering for logged-in users showing profile photo, dropdown with name, email, and logout.
+- Footer includes logo, website name, contact info, terms & conditions, and social media links.
+- Navbar and footer are present on all pages except the 404 page.
+
+### Home Page
+- Hero banner with 3 animated slides showcasing the platform.
+- Featured Cars section displays the 6 newest cars from MongoDB.
+- "Why Rent With Us" section highlighting platform benefits.
+- Extra sections like Top Rated Cars and Customer Testimonials.
+
+### Authentication
+- **Login Page:** Email, password, Google login, link to register page.
+- **Register Page:** Name, email, photoURL, password, Google login, link to login page.
+- Password validation: minimum 6 characters, at least one uppercase and one lowercase letter.
+- Toast/SweetAlert notifications for errors and success messages.
+
+### CRUD Operations
+- **Add Car:** Fields include Car Name, Description, Category, Rent Price, Location, Image URL, Provider Name/Email.
+- **My Listings:** View, update, and delete provider's own cars.
+- **My Bookings:** View all booked cars by the user.
+- **Browse Cars:** Public page showing all available cars.
+- **Car Details:** Private route showing full car information and booking option.
+
+### Extra Functionality
+- Loading spinner during data fetches.
+- Badges indicating car availability.
+- Search functionality to find cars by name.
+- Animations using Framer Motion, React Typewriter, React Tooltip, and Lottie React.
+
+---
+
+## Technologies Used
+
+- **Frontend:** React.js, React Router, Tailwind CSS, Framer Motion, React Simple Typewriter, React Tooltip, Lottie React
+- **Backend:** Node.js, Express.js, MongoDB, Firebase Authentication
+- **Hosting:** Client-side → Netlify / Surge / Firebase, Server-side → Vercel
+- **Other:** Axios for API requests, SweetAlert2/React Toastify for notifications
+
+---
+
+## Screenshots
+
+*(Add screenshots of your Home page, Add Car page, My Listings, My Bookings, Browse Cars, and Car Details here)*
+
+---
+
+## GitHub Repositories
+
+- [Client Repository]('')  
+- [Server Repository]('')
+
+---
+
+## Live Links
+
+- **Client:
+- **Server:**
+
+---
+
+## Notes
+
+- Ensure Firebase authorization is set for Netlify/Surge hosted client.
+- All private routes are protected; logged-in users won’t be redirected to login upon reload.
+- Car status updates dynamically upon booking to prevent double bookings.

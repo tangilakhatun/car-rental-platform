@@ -52,7 +52,7 @@ export default function Home() {
     <div className="space-y-16">
 
       {/* Hero Slider */}
-      <div className="relative mt-6 rounded-2xl overflow-hidden shadow-2xl max-w-7xl mx-auto">
+      <div className="relative mt-6 rounded-2xl overflow-hidden shadow-2xl max-w-11/12 mx-auto">
         <Carousel showThumbs={false} autoPlay infiniteLoop interval={3000} showStatus={false} swipeable emulateTouch>
           {[
             "https://i.ibb.co/DDwhg2LZ/hon.webp",
@@ -142,6 +142,51 @@ export default function Home() {
           </div>
         </div>
       </section>
+<section className="bg-gradient-to-b from-gray-50 to-gray-200 py-16">
+  <div className="container mx-auto px-6 text-center">
+    <motion.h2
+      className="text-3xl md:text-4xl font-bold mb-10 text-gray-800"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      What Our Customers Say
+    </motion.h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((t, index) => (
+        <motion.div
+          key={index}
+          className="relative bg-gradient-to-br from-white to-gray-100 p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
+          whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+        >
+          <div className="flex justify-center">
+            <img
+              src={t.img}
+              alt={t.name}
+              className="w-20 h-20 rounded-full object-cover border-4 border-orange-600 shadow-md -mt-12 mb-4 transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+          <p className="text-gray-800 italic mb-4 mt-2 text-lg md:text-xl leading-relaxed relative before:content-['“'] before:text-4xl before:text-orange-500 before:absolute before:-left-2 before:-top-2 after:content-['”'] after:text-4xl after:text-orange-500 after:absolute after:-right-2 after:-bottom-2">
+            {t.quote}
+          </p>
+          <p className="font-semibold text-gray-800">{t.name}</p>
+          <div className="flex justify-center mt-3 space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`w-5 h-5 ${i < t.rating ? "fill-yellow-400" : "fill-gray-300"}`}
+              />
+            ))}
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Top Rated Cars Slider */}
       <section className="container mx-auto px-6 py-10">

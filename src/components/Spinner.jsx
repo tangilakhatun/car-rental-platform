@@ -12,7 +12,7 @@ const Spinner = () => {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 z-50">
       <div className="flex flex-col items-center">
         
         <FaCarSide
