@@ -5,20 +5,21 @@ import api from "../../api/api";
 import Spinner from "../../components/Spinner";
 import CarCard from "../../components/CarCard";
 import { AuthContext } from "../../provider/AuthProvider";
+import { useNavigate } from "react-router";
 
 export default function MyListings() {
   const { user } = useContext(AuthContext);
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const fetchMyCars = async () => {
     try {
-      const res = await api.get("/cars"); 
+      const res = await api.get("/cars");
       if (user?.email) {
-        setCars(res.data.filter(car => car.ownerEmail === user.email));
-      } else {
-        setCars([]);
-      }
+        const myCars = res.data.filter((car) => car.ownerEmail === user.email);
+        setCars(myCars);
+      } else setCars([]);
     } catch (err) {
       console.error(err);
       Swal.fire({
@@ -35,6 +36,23 @@ export default function MyListings() {
     }
   };
 
+  useEffect(() => {
+    if (!user) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "warning",
+        title: "You must be logged in to see your listings",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      setLoading(false);
+      return;
+    }
+    fetchMyCars();
+  }, [user]);
+
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -46,8 +64,10 @@ export default function MyListings() {
       if (result.isConfirmed) {
         try {
           const token = localStorage.getItem("token");
-          await api.delete(`/cars/${id}`, { headers: { Authorization: `Bearer ${token}` } });
-          setCars(prev => prev.filter(car => car._id !== id));
+          await api.delete(`/cars/${id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setCars((prev) => prev.filter((car) => car._id !== id));
           Swal.fire({
             toast: true,
             position: "top-end",
@@ -72,24 +92,6 @@ export default function MyListings() {
     });
   };
 
-  useEffect(() => {
-    if (!user) {
-      
-      Swal.fire({
-        toast: true,
-        position: "top-end",
-        icon: "warning",
-        title: "You must be logged in to see your listings",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-      });
-      setLoading(false);
-      return;
-    }
-    fetchMyCars();
-  }, [user]);
-
   if (loading) return <Spinner />;
 
   return (
@@ -99,15 +101,25 @@ export default function MyListings() {
         <p>No cars listed yet.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cars.map(car => (
+          {cars.map((car) => (
             <div key={car._id} className="relative">
-              <CarCard car={car} />
-              <button
-                onClick={() => handleDelete(car._id)}
-                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
+              <CarCard car={{ name: car.carName, image: car.imageUrl, ...car }} />
+              <div className="absolute top-2 right-2 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => navigate(`/update/${car._id}`)}
+                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                >
+                  Update
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(car._id)}
+                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>

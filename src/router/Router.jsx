@@ -10,6 +10,7 @@ import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 import BrowseCars from "../pages/browsecar/BrowseCars";
 import PrivateRoute from "./PrivateRoute";
+import UpdateCar from "../pages/MyListings/Update";
 
 
 
@@ -41,7 +42,13 @@ const router = createBrowserRouter([
          </PrivateRoute>
         ),
       },
-
+{ path: "/update/:id", 
+        element: (
+         <PrivateRoute>
+           <UpdateCar></UpdateCar>
+         </PrivateRoute>
+        ),
+      },
       { path: "/my-bookings",
          element: (
             <PrivateRoute>

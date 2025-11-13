@@ -12,14 +12,8 @@ body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
   /* background: linear-gradient(to right, #f3e8ff, #dbeafe, #e0e7ff);
-  min-height: 100vh;
+ 
   color: #111; */
+   min-height: 100vh;
 }
-
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-}
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 
