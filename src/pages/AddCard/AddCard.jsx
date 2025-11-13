@@ -164,7 +164,6 @@ const AddCar = () => {
     try {
       const token = localStorage.getItem("token");
 
-      // ✅ ব্যাকএন্ডের ফিল্ড অনুযায়ী ডেটা পাঠানো হচ্ছে
       const payload = {
         carName: formData.carName,
         description: formData.description,
@@ -180,7 +179,7 @@ const AddCar = () => {
 
       Swal.fire("Success", res.data.message, "success");
 
-      // ✅ ফর্ম ক্লিয়ার করা হচ্ছে
+   
       setFormData({
         carName: "",
         description: "",
@@ -195,7 +194,7 @@ const AddCar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-100 via-blue-100 to-indigo-100">
+    <div className="flex items-center justify-center min-h-screen ">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-xl">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Add New Car
@@ -262,7 +261,7 @@ const AddCar = () => {
             className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
           />
 
-          {/* ✅ Logged in user info display only */}
+         
           <input
             type="text"
             value={user?.displayName || ""}

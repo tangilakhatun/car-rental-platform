@@ -1,18 +1,21 @@
 import React from 'react';
+import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { MdAddIcCall, MdOutlineEmail } from 'react-icons/md';
 
 const Footer = () => {
     return (
          <footer className="bg-gray-900 text-gray-200 mt-10">
   <div className="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
     
-    {/* About + Search */}
+    
     <div>
       <h2 className="text-2xl font-bold mb-4">RentWheels</h2>
       <p className="text-gray-400 mb-4">
         Car rental platform where users find reliable cars and providers connect with customers.
       </p>
 
-      {/* Search Bar */}
+     
       <div className="flex">
         <input 
           type="text" 
@@ -23,7 +26,7 @@ const Footer = () => {
       </div>
     </div>
 
-    {/* Quick Links */}
+   
     <div>
       <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
       <ul className="space-y-2">
@@ -35,7 +38,7 @@ const Footer = () => {
       </ul>
     </div>
 
-    {/* Services */}
+    
     <div>
       <h3 className="text-xl font-semibold mb-4">Services</h3>
       <ul className="space-y-2 text-gray-400">
@@ -47,27 +50,19 @@ const Footer = () => {
       </ul>
     </div>
 
-    {/* Contact + Social Media */}
+    
     <div>
       <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
       <p className="text-gray-400">4140 Parker Rd, Allentown, NM 31134</p>
-      <p className="text-white font-bold mt-2">(219) 555-0114</p>
-      <p className="text-white font-bold ">gorent@gmail.com</p>
+      <p className="text-white  mt-2 flex gap-2 items-center"> <span><MdAddIcCall /></span>(219) 555-0114</p>
+      <p className="text-white  flex gap-2 items-center "> <span><MdOutlineEmail /></span>gorent@gmail.com</p>
 
-      {/* Social Media Icons */}
+     
       <div className="flex space-x-4 mt-4">
-        <a href="#" className="hover:text-white">
-          <i className="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" className="hover:text-white">
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a href="#" className="hover:text-white">
-          <i className="fab fa-instagram"></i>
-        </a>
-        <a href="#" className="hover:text-white">
-          <i className="fab fa-linkedin-in"></i>
-        </a>
+        <FaFacebook />
+        <FaYoutube />
+        <FaSquareXTwitter />
+        <FaInstagram />
       </div>
     </div>
   </div>
