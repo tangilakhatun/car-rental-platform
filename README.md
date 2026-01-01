@@ -1,6 +1,6 @@
 # RentWheels – Car Rental Platform
 
-[Live Site]('https://musical-semifreddo-d13300.netlify.app/')  
+[Live Site](https://musical-semifreddo-d13300.netlify.app)  
 
 RentWheels is a full-stack MERN car rental platform that connects users with local car owners and rental providers. Users can browse available cars, view details, and book rentals for specific dates, while providers can list their vehicles, manage bookings, and update availability.
 
