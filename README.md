@@ -1,4 +1,4 @@
-# RentWheels – Car Rental Platform
+# 🚗 RentWheels – Car Rental Platform
 
 [Live Site](https://musical-semifreddo-d13300.netlify.app)  
 
@@ -68,16 +68,16 @@ RentWheels is a full-stack MERN car rental platform that connects users with loc
 
 ## GitHub Repositories
 
-- [Client Repository]('https://github.com/tangilakhatun/car-rental-platform.git')  
-- [Server Repository]('https://github.com/tangilakhatun/Assignment-Crud-Service.git')
+- [Client Repository](https://github.com/tangilakhatun/car-rental-platform.git)  
+- [Server Repository](https://github.com/tangilakhatun/Assignment-Crud-Service.git)
 
 ---
 
-## Live Links
-https://musical-semifreddo-d13300.netlify.app/
-- **Client:
-- **Server:**
-https://car-rental-server-side.vercel.app/
+## 🌐 Live Links
+
+- **Client (Frontend):** https://musical-semifreddo-d13300.netlify.app/
+- **Server (Backend):** https://car-rental-server-side.vercel.app/
+
 ---
 
 ## Notes
