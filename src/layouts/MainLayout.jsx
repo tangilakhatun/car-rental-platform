@@ -9,7 +9,7 @@ export default function MainLayout() {
   return (
     <>
      <Navbar></Navbar>
-      <main className="">
+      <main className=" container mx-auto">
        <Outlet></Outlet>
       </main>
      <Footer></Footer>

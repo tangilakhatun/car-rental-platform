@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc"; // Google icon
-
+import api from "../../api/api"
 const  Register =() =>{
   const { registerUser, googleLogin } = useContext(AuthContext);
   const [form, setForm] = useState({ name: "", email: "", password: "", photoURL: "" });
@@ -18,12 +18,34 @@ const  Register =() =>{
       return;
     }
     try {
-      await registerUser(form.email, form.password, form.name, form.photoURL);
-      Swal.fire("Success", "Registered successfully", "success");
-      navigate("/");
-    } catch (err) {
-      Swal.fire("Error", err.message, "error");
+  // 1️⃣ Firebase register
+  const res = await registerUser(
+    form.email,
+    form.password,
+    form.name,
+    form.photoURL
+  );
+
+  // 2️⃣ Firebase token
+  const token = await res.getIdToken(true);
+
+  // 3️⃣ MongoDB save (BODY EMPTY)
+  await api.post(
+    "/users",
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }
+  );
+
+  Swal.fire("Success", "Registered successfully", "success");
+  navigate("/");
+} catch (err) {
+  Swal.fire("Error", err.message, "error");
+}
+
   };
 
   const handleGoogle = async () => {

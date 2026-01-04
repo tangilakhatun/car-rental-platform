@@ -10,6 +10,7 @@ import {
   updateProfile 
 } from "firebase/auth";
 import app from "../firebase/firebase.config"; 
+import api from "../api/api";
 
 export const AuthContext = createContext();
 
@@ -19,6 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+const [role, setRole] = useState(null);
 
   
   const registerUser = async (email, password, name, photoURL) => {
@@ -74,35 +76,56 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        try {
-          const token = await currentUser.getIdToken(true); // force refresh token
-          localStorage.setItem("token", token); // safe store
-          setUser(currentUser);
-        } catch (err) {
-          console.error("Token fetch error:", err);
-          localStorage.removeItem("token");
-          setUser(null);
-        }
-      } else {
-        localStorage.removeItem("token");
-        setUser(null);
-      }
-      setLoading(false);
-    });
+  const refreshUser = async () => {
+  if (auth.currentUser) {
+    await auth.currentUser.reload();
+    setUser({ ...auth.currentUser });
+  }
+};
 
-    return () => unsubscribe();
-  }, []);
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    if (currentUser) {
+      try {
+        const token = await currentUser.getIdToken(true);
+        localStorage.setItem("token", token);
+        setUser(currentUser);
+
+        const res = await api.get(
+          `/users/role/${currentUser.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setRole(res.data.role);
+      } catch (err) {
+        console.error("Auth error:", err);
+        setUser(null);
+        setRole(null);
+      }
+    } else {
+      setUser(null);
+      setRole(null);
+      localStorage.removeItem("token");
+    }
+    setLoading(false);
+  });
+
+  return () => unsubscribe();
+}, []);
 
   return (
     <AuthContext.Provider value={{
       user,
+       role,    
       loading,
       registerUser,
       loginUser,
+      refreshUser,
       googleLogin,
       logoutUser,
     }}>
